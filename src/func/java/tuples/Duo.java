@@ -17,7 +17,7 @@ import java.util.function.Consumer;
  * @param <T1> the type of the first object in the tuple
  * @param <T2> the type of the second object in the tuple
  */
-public interface Pair<T1, T2>
+public interface Duo<T1, T2>
 {
 	/**
 	 * @return the first object in the tuple
@@ -39,7 +39,7 @@ public interface Pair<T1, T2>
 	 * @param func - the function to "consume" the first object
 	 * @return <code>this</code>, for method chaining.
 	 */
-	Pair<T1, T2> useOne(Consumer<?  super T1> func);	
+	Duo<T1, T2> useOne(Consumer<?  super T1> func);	
 	/**
 	 * @return the second object in the tuple
 	 */
@@ -51,11 +51,11 @@ public interface Pair<T1, T2>
 	 * @param func - the function to "consume" the second object
 	 * @return <code>this</code>, for method chaining.
 	 */
-	Pair<T1, T2> useTwo(Consumer<? super T2> func);	
+	Duo<T1, T2> useTwo(Consumer<? super T2> func);	
 	/**
 	 * @return the same tuple in reverse order
 	 */
-	Pair<T2, T1> swap();
+	Duo<T2, T1> swap();
 	
 	//***************************************************************************
 	// Public static factories
@@ -66,8 +66,8 @@ public interface Pair<T1, T2>
 	 * @param two - the second object of the tuple
 	 * @return the created Tuple2 containing the given objects
 	 */
-	public static <T1,T2> Pair<T1, T2> of(T1 one, T2 two)
+	public static <T1,T2> Duo<T1, T2> of(T1 one, T2 two)
 	{
-		return new PairImpl<T1,T2>(one, two);
+		return new DuoImpl<T1,T2>(one, two);
 	}
 }

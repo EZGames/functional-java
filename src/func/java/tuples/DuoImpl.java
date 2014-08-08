@@ -2,7 +2,7 @@ package func.java.tuples;
 
 import java.util.function.Consumer;
 
-final class PairImpl<T1, T2> implements Pair<T1, T2>
+final class DuoImpl<T1, T2> implements Duo<T1, T2>
 {
 	//***************************************************************************
 	// Public API methods
@@ -12,7 +12,7 @@ final class PairImpl<T1, T2> implements Pair<T1, T2>
 		return one;
 	}
 	
-	public Pair<T1, T2> useOne(Consumer<? super T1> func)
+	public Duo<T1, T2> useOne(Consumer<? super T1> func)
 	{
 		if(func != null)
 		{
@@ -26,7 +26,7 @@ final class PairImpl<T1, T2> implements Pair<T1, T2>
 		return two;
 	}
 
-	public Pair<T1, T2> useTwo(Consumer<? super T2> func)
+	public Duo<T1, T2> useTwo(Consumer<? super T2> func)
 	{
 		if(func != null)
 		{
@@ -35,7 +35,7 @@ final class PairImpl<T1, T2> implements Pair<T1, T2>
 		return this;
 	}
 	
-	public Pair<T2, T1> swap()
+	public Duo<T2, T1> swap()
 	{
 		return new SwappedTuple2<>(this);
 	}
@@ -50,7 +50,7 @@ final class PairImpl<T1, T2> implements Pair<T1, T2>
 	//***************************************************************************
 	// Package-private constructors
 	//***************************************************************************
-	PairImpl(T1 first, T2 second)
+	DuoImpl(T1 first, T2 second)
 	{
 		one = first;
 		two = second;
@@ -63,9 +63,9 @@ final class PairImpl<T1, T2> implements Pair<T1, T2>
 	private final T2 two;	
 }
 
-final class SwappedTuple2<T1, T2> implements Pair<T1, T2>
+final class SwappedTuple2<T1, T2> implements Duo<T1, T2>
 {
-	public SwappedTuple2(Pair<T2, T1> original)
+	public SwappedTuple2(Duo<T2, T1> original)
 	{
 		this.original = original;
 	}
@@ -75,7 +75,7 @@ final class SwappedTuple2<T1, T2> implements Pair<T1, T2>
 		return original.two();
 	}
 
-	public Pair<T1, T2> useOne(Consumer<? super T1> func)
+	public Duo<T1, T2> useOne(Consumer<? super T1> func)
 	{
 		original.useTwo(func);
 		return this;
@@ -86,13 +86,13 @@ final class SwappedTuple2<T1, T2> implements Pair<T1, T2>
 		return original.one();
 	}
 
-	public Pair<T1, T2> useTwo(Consumer<? super T2> func)
+	public Duo<T1, T2> useTwo(Consumer<? super T2> func)
 	{
 		original.useOne(func);
 		return this;
 	}
 
-	public Pair<T2, T1> swap()
+	public Duo<T2, T1> swap()
 	{
 		return original;
 	}
@@ -104,5 +104,5 @@ final class SwappedTuple2<T1, T2> implements Pair<T1, T2>
 		return sb.toString();
 	}
 	
-	private final Pair<T2, T1> original;	
+	private final Duo<T2, T1> original;	
 }

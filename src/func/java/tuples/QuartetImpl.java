@@ -2,14 +2,14 @@ package func.java.tuples;
 
 import java.util.function.Consumer;
 
-class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
+class QuartetImpl<T1, T2, T3, T4> implements Quartet<T1, T2, T3, T4>
 {
 	public T1 one()
 	{
 		return one;
 	}
 	
-	public Quadruplet<T1, T2, T3, T4> useOne(Consumer<? super T1> func)
+	public Quartet<T1, T2, T3, T4> useOne(Consumer<? super T1> func)
 	{
 		if(func != null)
 		{
@@ -23,7 +23,7 @@ class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return two;
 	}
 	
-	public Quadruplet<T1, T2, T3, T4> useTwo(Consumer<? super T2> func)
+	public Quartet<T1, T2, T3, T4> useTwo(Consumer<? super T2> func)
 	{
 		if(func != null)
 		{
@@ -37,7 +37,7 @@ class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return three;
 	}
 	
-	public Quadruplet<T1, T2, T3, T4> useThree(Consumer<? super T3> func)
+	public Quartet<T1, T2, T3, T4> useThree(Consumer<? super T3> func)
 	{
 		if(func != null)
 		{
@@ -51,7 +51,7 @@ class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return four;
 	}
 	
-	public Quadruplet<T1, T2, T3, T4> useFour(Consumer<? super T4> func)
+	public Quartet<T1, T2, T3, T4> useFour(Consumer<? super T4> func)
 	{
 		if(func != null)
 		{
@@ -60,7 +60,7 @@ class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return this;
 	}
 	
-	public Quadruplet<T4, T3, T2, T1> swap()
+	public Quartet<T4, T3, T2, T1> swap()
 	{
 		return new SwappedTuple4<>(this);
 	}
@@ -72,7 +72,7 @@ class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return sb.toString();
 	}
 	
-	QuadrupletImpl(T1 one, T2 two, T3 three, T4 four)
+	QuartetImpl(T1 one, T2 two, T3 three, T4 four)
 	{
 		this.one = one;
 		this.two = two;
@@ -87,14 +87,14 @@ class QuadrupletImpl<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 	
 }
 
-class SwappedTuple4<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
+class SwappedTuple4<T1, T2, T3, T4> implements Quartet<T1, T2, T3, T4>
 {
 	public T1 one()
 	{
 		return normal.four();
 	}
 
-	public Quadruplet<T1, T2, T3, T4> useOne(Consumer<? super T1> func)
+	public Quartet<T1, T2, T3, T4> useOne(Consumer<? super T1> func)
 	{
 		normal.useFour(func);
 		return this;
@@ -105,7 +105,7 @@ class SwappedTuple4<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return normal.three();
 	}
 
-	public Quadruplet<T1, T2, T3, T4> useTwo(Consumer<? super T2> func)
+	public Quartet<T1, T2, T3, T4> useTwo(Consumer<? super T2> func)
 	{
 		normal.useThree(func);
 		return this;
@@ -116,7 +116,7 @@ class SwappedTuple4<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return normal.two();
 	}
 
-	public Quadruplet<T1, T2, T3, T4> useThree(Consumer<? super T3> func)
+	public Quartet<T1, T2, T3, T4> useThree(Consumer<? super T3> func)
 	{
 		normal.useTwo(func);
 		return this;
@@ -127,13 +127,13 @@ class SwappedTuple4<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return normal.one();
 	}
 
-	public Quadruplet<T1, T2, T3, T4> useFour(Consumer<? super T4> func)
+	public Quartet<T1, T2, T3, T4> useFour(Consumer<? super T4> func)
 	{
 		normal.useOne(func);
 		return this;
 	}
 
-	public Quadruplet<T4, T3, T2, T1> swap()
+	public Quartet<T4, T3, T2, T1> swap()
 	{
 		return normal;
 	}
@@ -145,10 +145,10 @@ class SwappedTuple4<T1, T2, T3, T4> implements Quadruplet<T1, T2, T3, T4>
 		return sb.toString();
 	}
 	
-	SwappedTuple4(Quadruplet<T4, T3, T2, T1> normal)
+	SwappedTuple4(Quartet<T4, T3, T2, T1> normal)
 	{
 		this.normal = normal;
 	}
 	
-	private final Quadruplet<T4, T3, T2, T1> normal;
+	private final Quartet<T4, T3, T2, T1> normal;
 }

@@ -2,7 +2,18 @@ package func.java.tuples;
 
 import java.util.function.Consumer;
 
-public interface Quadruplet<T1, T2, T3, T4>
+/**
+ * Represents a 3-part tuple, as seen in other programming languages, essentially
+ * allowing for multiple values to be passed around together (usually in a return
+ * statement) without being intrinsically related.
+ * <p>
+ * @see {@link Duo} for more information on the purpose and use of these
+ * Tuples.</p> 
+ * @param <T1> the type of the first object in the tuple
+ * @param <T2> the type of the second object in the tuple
+ * @param <T3> the type of the third object in the tuple
+ */
+public interface Trio<T1, T2, T3>
 {
 	/**
 	 * @return the first object in the tuple
@@ -11,11 +22,11 @@ public interface Quadruplet<T1, T2, T3, T4>
 	/**
 	 * Provide a function that uses the first object in the tuple. Returns the
 	 * same tuple, allowing you to chain commands.
-	 *	@see {@link Pair#useOne} for a fuller description of the purpose of this method
+	 *	@see {@link Duo#useOne} for a fuller description of the purpose of this method
 	 * @param func - the function to "consume" the first object
 	 * @return <code>this</code>, for method chaining.
 	 */
-	Quadruplet<T1, T2, T3, T4> useOne(Consumer<? super T1> func);
+	Trio<T1, T2, T3> useOne(Consumer<? super T1> func);
 	/**
 	 * @return the second object in the tuple
 	 */
@@ -23,11 +34,11 @@ public interface Quadruplet<T1, T2, T3, T4>
 	/**
 	 * Provide a function that uses the second object in the tuple. Returns the
 	 * same tuple, allowing you to chain commands.
-	 *	@see {@link Pair#useOne} for a fuller description of the purpose of this method
+	 *	@see {@link Duo#useOne} for a fuller description of the purpose of this method
 	 * @param func - the function to "consume" the second object
 	 * @return <code>this</code>, for method chaining.
 	 */
-	Quadruplet<T1, T2, T3, T4> useTwo(Consumer<? super T2> func);
+	Trio<T1, T2, T3> useTwo(Consumer<? super T2> func);
 	/**
 	 * @return the third object in the tuple
 	 */
@@ -35,27 +46,15 @@ public interface Quadruplet<T1, T2, T3, T4>
 	/**
 	 * Provide a function that uses the third object in the tuple. Returns the
 	 * same tuple, allowing you to chain commands.
-	 *	@see {@link Pair#useOne} for a fuller description of the purpose of this method
+	 *	@see {@link Duo#useOne} for a fuller description of the purpose of this method
 	 * @param func - the function to "consume" the third object
 	 * @return <code>this</code>, for method chaining.
 	 */
-	Quadruplet<T1, T2, T3, T4> useThree(Consumer<? super T3> func);
-	/**
-	 * @return the third object in the tuple
-	 */
-	T4 four();
-	/**
-	 * Provide a function that uses the fourth object in the tuple. Returns the
-	 * same tuple, allowing you to chain commands.
-	 *	@see {@link Pair#useOne} for a fuller description of the purpose of this method
-	 * @param func - the function to "consume" the fourth object
-	 * @return <code>this</code>, for method chaining.
-	 */
-	Quadruplet<T1, T2, T3, T4> useFour(Consumer<? super T4> func);
+	Trio<T1, T2, T3> useThree(Consumer<? super T3> func);
 	/**
 	 * @return the same tuple in reverse order
 	 */
-	Quadruplet<T4, T3, T2, T1> swap();
+	Trio<T3, T2, T1> swap();
 	
 	//***************************************************************************
 	// Static factory method
@@ -68,8 +67,8 @@ public interface Quadruplet<T1, T2, T3, T4>
 	 * @param three - the third object of the tuple
 	 * @return the created Tuple3 containing the given objects
 	 */
-	public static <T1, T2, T3, T4> Quadruplet<T1, T2, T3, T4> of(T1 one, T2 two, T3 three, T4 four)
+	public static <T1, T2, T3> Trio<T1, T2, T3> of(T1 one, T2 two, T3 three)
 	{
-		return new QuadrupletImpl<>(one, two, three, four);
+		return new TrioImpl<>(one, two, three);
 	}
 }

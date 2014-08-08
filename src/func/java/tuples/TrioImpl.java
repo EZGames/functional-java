@@ -2,14 +2,14 @@ package func.java.tuples;
 
 import java.util.function.Consumer;
 
-final class TripletImpl<T1, T2, T3> implements Triplet<T1, T2, T3>
+final class TrioImpl<T1, T2, T3> implements Trio<T1, T2, T3>
 {
 	public T1 one()
 	{
 		return one;
 	}
 	
-	public Triplet<T1, T2, T3> useOne(Consumer<? super T1> func)
+	public Trio<T1, T2, T3> useOne(Consumer<? super T1> func)
 	{
 		if(func != null)
 		{
@@ -23,7 +23,7 @@ final class TripletImpl<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return two;
 	}
 
-	public Triplet<T1, T2, T3> useTwo(Consumer<? super T2> func)
+	public Trio<T1, T2, T3> useTwo(Consumer<? super T2> func)
 	{
 		if(func != null)
 		{
@@ -37,7 +37,7 @@ final class TripletImpl<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return three;
 	}
 
-	public Triplet<T1, T2, T3> useThree(Consumer<? super T3> func)
+	public Trio<T1, T2, T3> useThree(Consumer<? super T3> func)
 	{
 		if(func != null)
 		{
@@ -46,7 +46,7 @@ final class TripletImpl<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return this;
 	}
 
-	public Triplet<T3, T2, T1> swap()
+	public Trio<T3, T2, T1> swap()
 	{
 		return new SwappedTuple3<>(this);
 	}
@@ -58,7 +58,7 @@ final class TripletImpl<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return sb.toString();
 	}
 	
-	TripletImpl(T1 one, T2 two, T3 three)
+	TrioImpl(T1 one, T2 two, T3 three)
 	{
 		this.one = one;
 		this.two = two;
@@ -70,14 +70,14 @@ final class TripletImpl<T1, T2, T3> implements Triplet<T1, T2, T3>
 	private final T3 three;
 }
 
-final class SwappedTuple3<T1, T2, T3> implements Triplet<T1, T2, T3>
+final class SwappedTuple3<T1, T2, T3> implements Trio<T1, T2, T3>
 {
 	public T1 one()
 	{
 		return original.three();
 	}
 
-	public Triplet<T1, T2, T3> useOne(Consumer<? super T1> func)
+	public Trio<T1, T2, T3> useOne(Consumer<? super T1> func)
 	{
 		original.useThree(func);
 		return this;
@@ -88,7 +88,7 @@ final class SwappedTuple3<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return original.two();
 	}
 
-	public Triplet<T1, T2, T3> useTwo(Consumer<? super T2> func)
+	public Trio<T1, T2, T3> useTwo(Consumer<? super T2> func)
 	{
 		original.useTwo(func);
 		return this;
@@ -99,13 +99,13 @@ final class SwappedTuple3<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return original.one();
 	}
 
-	public Triplet<T1, T2, T3> useThree(Consumer<? super T3> func)
+	public Trio<T1, T2, T3> useThree(Consumer<? super T3> func)
 	{
 		original.useOne(func);
 		return this;
 	}
 
-	public Triplet<T3, T2, T1> swap()
+	public Trio<T3, T2, T1> swap()
 	{
 		return original;
 	}
@@ -117,10 +117,10 @@ final class SwappedTuple3<T1, T2, T3> implements Triplet<T1, T2, T3>
 		return sb.toString();
 	}
 	
-	SwappedTuple3(Triplet<T3, T2, T1> original)
+	SwappedTuple3(Trio<T3, T2, T1> original)
 	{
 		this.original = original;
 	}
 	
-	private final Triplet<T3, T2, T1> original;
+	private final Trio<T3, T2, T1> original;
 }
