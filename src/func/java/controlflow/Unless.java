@@ -3,17 +3,17 @@ package func.java.controlflow;
 // TODO: document
 public class Unless
 {
-	public static Unless unless(boolean expression)
+	public static Unless unless_(boolean expression)
 	{
 		return new Unless(expression);
 	}
 	
-	public static void unless(boolean expression, Runnable action)
+	public static void unless_(boolean expression, Runnable action)
 	{
-		new Unless(expression).doThis(action);
+		new Unless(expression).do_(action);
 	}
 	
-	public void doThis(Runnable action)
+	public void do_(Runnable action)
 	{
 		if(!expression)
 		{
