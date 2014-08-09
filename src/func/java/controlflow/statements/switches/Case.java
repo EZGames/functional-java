@@ -1,4 +1,4 @@
-package func.java.controlflow;
+package func.java.controlflow.statements.switches;
 
 public abstract class Case<S extends SwitchStatement<F>, F>
 {

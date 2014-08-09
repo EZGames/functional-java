@@ -1,4 +1,4 @@
-package func.java.controlflow;
+package func.java.controlflow.statements.switches;
 
 import java.util.function.Supplier;
 

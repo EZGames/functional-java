@@ -7,22 +7,22 @@ import static org.hamcrest.core.IsSame.sameInstance;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
-public class Tuple2Test
+public class TupleDuoTest
 {
-	private static Pair<String, Exception> getTuple()
+	private static Duo<String, Exception> getTuple()
 	{
-		return Pair.of(string, exception);
+		return Duo.of(string, exception);
 	}
 	
 	private final static String string = "string";
 	private final static Exception exception= new IllegalArgumentException("message", new NullPointerException());
-	private final static Pair<String, Exception> tuple = getTuple();
+	private final static Duo<String, Exception> tuple = getTuple();
 	
 	// ***** test of() **********************************************************
 	@Test
 	public void shouldGetNonNullValuesFromOf()
 	{
-		Pair<String, Exception> tuple = Pair.of(string, exception);
+		Duo<String, Exception> tuple = Duo.of(string, exception);
 		
 		assertThat(tuple.one(), is(notNullValue()));
 	}
@@ -30,7 +30,7 @@ public class Tuple2Test
 	@Test
 	public void shouldGetNullObjectsBackFromOf()
 	{
-		Pair<String, Exception> tuple = Pair.of(null, null);
+		Duo<String, Exception> tuple = Duo.of(null, null);
 		
 		assertThat(tuple.one(), is(nullValue()));
 		assertThat(tuple.two(), is(nullValue()));
@@ -54,7 +54,7 @@ public class Tuple2Test
 	@Test
 	public void shouldGetReversedValuesFromSwap()
 	{
-		Pair<Exception, String> revTuple = tuple.swap();
+		Duo<Exception, String> revTuple = tuple.swap();
 		
 		assertThat(revTuple.one(), is(tuple.two()));
 		assertThat(revTuple.two(), is(tuple.one()));
@@ -63,7 +63,7 @@ public class Tuple2Test
 	@Test
 	public void shouldGetSameTupleBackWhenDoubleSwapped()
 	{
-		Pair<String, Exception> doubleSwapped = tuple.swap().swap();
+		Duo<String, Exception> doubleSwapped = tuple.swap().swap();
 		
 		assertThat(doubleSwapped, is(sameInstance(tuple)));
 	}

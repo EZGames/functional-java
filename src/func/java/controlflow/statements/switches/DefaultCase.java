@@ -1,4 +1,4 @@
-package func.java.controlflow;
+package func.java.controlflow.statements.switches;
 
 // TODO document and test
 public class DefaultCase
@@ -6,7 +6,7 @@ public class DefaultCase
 	//***************************************************************************
 	// Public constructor
 	//***************************************************************************
-	public DefaultCase(SwitchStatement<?> switch_)
+	DefaultCase(SwitchStatement<?> switch_)
 	{
 		this.switch_ = switch_;
 		action = null;

@@ -1,6 +1,6 @@
-package func.java.controlflow;
+package func.java.controlflow.statements.switches;
 
-public class ObjectCompareCase<T> extends Case<ObjectCompareSwitchStatement<T>, T>
+class ObjectCompareCase<T> extends Case<ObjectCompareSwitchStatement<T>, T>
 {
 	
 	ObjectCompareCase(T caseStatement, ObjectCompareSwitchStatement<T> switch_)

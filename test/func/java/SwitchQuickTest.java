@@ -1,6 +1,6 @@
 package func.java;
 
-import static func.java.controlflow.SwitchStatementFactory.*;
+import static func.java.controlflow.statements.switches.SwitchStatementFactory.*;
 
 //This test is outside of the controlflow package in order to test whether everything
 // could be done with all the classes being private.

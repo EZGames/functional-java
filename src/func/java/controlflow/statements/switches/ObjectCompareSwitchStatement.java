@@ -1,6 +1,6 @@
-package func.java.controlflow;
+package func.java.controlflow.statements.switches;
 
-public class ObjectCompareSwitchStatement<T> extends SwitchStatement<T>
+class ObjectCompareSwitchStatement<T> extends SwitchStatement<T>
 {
 	
 	ObjectCompareSwitchStatement(T switchObj)

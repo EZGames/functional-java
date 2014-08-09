@@ -1,15 +1,16 @@
-package func.java.controlflow;
+package func.java.controlflow.statements.switches;
 
-import java.util.function.Predicate;
+import java.util.function.Supplier;
 
-class PredicateSwitchStatement<T> extends SwitchStatement<Predicate<T>>
+
+class SupplierCompareSwitchStatement<T> extends SwitchStatement<Supplier<T>>
 {
 	//***************************************************************************
 	// Public API methods
 	//***************************************************************************
-	public PredicateCase<T> case_(Predicate<T> expr)
+	public SupplierCompareCase<T> case_(Supplier<T> obj)
 	{
-		return new PredicateCase<T>(expr, this);
+		return new SupplierCompareCase<T>(obj, this);
 	}
 	
 	T getSwitchArgument()
@@ -20,13 +21,10 @@ class PredicateSwitchStatement<T> extends SwitchStatement<Predicate<T>>
 	//***************************************************************************
 	// Internal constructor
 	//***************************************************************************
-	PredicateSwitchStatement(T switchObj)
+	SupplierCompareSwitchStatement(T switchObj)
 	{
 		this.switchObj = switchObj;
 	}
 	
-	//***************************************************************************
-	// private fields
-	//***************************************************************************
 	private final T switchObj;
 }
