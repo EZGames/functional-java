@@ -1,14 +1,14 @@
 package func.java.controlflow.statements.switches;
 
-import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
 // TODO document and test
-class ParameterlessCase extends Case<ParameterlessSwitchStatement, Callable<Boolean>>
+class ParameterlessCase extends Case<ParameterlessSwitchStatement, Supplier<Boolean>>
 {
 	//***************************************************************************
 	// Public constructor
 	//***************************************************************************
-	public ParameterlessCase(Callable<Boolean> expr, ParameterlessSwitchStatement switch_)
+	public ParameterlessCase(Supplier<Boolean> expr, ParameterlessSwitchStatement switch_)
 	{
 		super(expr, switch_);
 	}
@@ -16,7 +16,7 @@ class ParameterlessCase extends Case<ParameterlessSwitchStatement, Callable<Bool
 	//***************************************************************************
 	// Public API methods
 	//***************************************************************************
-	public ParameterlessCase case_(Callable<Boolean> expr)
+	public ParameterlessCase case_(Supplier<Boolean> expr)
 	{
 		switch_.addCase(this);
 		return switch_.case_(expr);
@@ -27,13 +27,6 @@ class ParameterlessCase extends Case<ParameterlessSwitchStatement, Callable<Bool
 	//***************************************************************************
 	boolean isTrue()
 	{
-		try
-		{
-			return caseStatement.call();
-		}
-		catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
+		return caseStatement.get();
 	}
 }

@@ -1,30 +1,25 @@
 package func.java.controlflow.statements;
 
-// TODO: document
+
 public class Unless
 {
-	public static Unless unless_(boolean expression)
+	public static Unless do_(Runnable run)
 	{
-		return new Unless(expression);
+		return new Unless(run);
 	}
 	
-	public static void unless_(boolean expression, Runnable action)
+	public void unless_(boolean condition)
 	{
-		new Unless(expression).do_(action);
-	}
-	
-	public void do_(Runnable action)
-	{
-		if(!expression)
+		if(!condition)
 		{
-			action.run();
+			run.run();	
 		}
-	}	
-	
-	private boolean expression;
-	
-	private Unless(boolean expression)
-	{
-		this.expression = expression;
 	}
+	
+	private Unless(Runnable run)
+	{
+		this.run = run;
+	}
+	
+	private final Runnable run;
 }

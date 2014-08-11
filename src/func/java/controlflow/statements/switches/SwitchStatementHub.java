@@ -1,22 +1,21 @@
 package func.java.controlflow.statements.switches;
 
-import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class SwitchStatementFactory<T>
+public class SwitchStatementHub<T>
 {
 	//***************************************************************************
 	// Public static factories
 	//***************************************************************************
-	public static SwitchStatement<Callable<Boolean>> switch_()
+	public static SwitchStatement<Supplier<Boolean>> switch_()
 	{
 		return new ParameterlessSwitchStatement();
 	}
 	
-	public static <T> SwitchStatementFactory<T> switch_(T obj)
+	public static <T> SwitchStatementHub<T> switch_(T obj)
 	{
-		return new SwitchStatementFactory<T>(obj);
+		return new SwitchStatementHub<T>(obj);
 	}
 	
 	//***************************************************************************
@@ -55,7 +54,7 @@ public class SwitchStatementFactory<T>
 	//***************************************************************************
 	// Private constructor
 	//***************************************************************************
-	private SwitchStatementFactory(T obj)
+	private SwitchStatementHub(T obj)
 	{
 		switchObj = obj;
 	}

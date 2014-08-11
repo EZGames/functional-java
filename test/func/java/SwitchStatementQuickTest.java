@@ -1,22 +1,22 @@
 package func.java;
 
-import static func.java.controlflow.statements.switches.SwitchStatementFactory.*;
+import static func.java.controlflow.statements.switches.SwitchStatementHub.*;
 
 //This test is outside of the controlflow package in order to test whether everything
 // could be done with all the classes being private.
-public class SwitchQuickTest
+public class SwitchStatementQuickTest
 {
 	public static void main(String[] args)
 	{
 		switch_(5)
 			.case_(3)
-				.then_(SwitchQuickTest::case1)
+				.then_(SwitchStatementQuickTest::case1)
 				.continue_()
 			.case_(5)
-				.then_(SwitchQuickTest::case2pt1)
+				.then_(SwitchStatementQuickTest::case2pt1)
 				.continue_()
 			.default_()
-				.then_(SwitchQuickTest::defaultCase)
+				.then_(SwitchStatementQuickTest::defaultCase)
 		.go_();
 	}
 	

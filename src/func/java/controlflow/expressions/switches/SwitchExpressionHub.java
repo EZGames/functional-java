@@ -1,22 +1,16 @@
 package func.java.controlflow.expressions.switches;
 
-import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class SwitchExpressionFactory<T, R>
+public class SwitchExpressionHub<T, R>
 {
 	//***************************************************************************
 	// Public static factories
 	//***************************************************************************
-	public static <R> SwitchExpression<Callable<Boolean>, R> switch_()
+	public static <T, R> SwitchExpressionHub<T, R> switch_(T obj)
 	{
-		return new ParameterlessSwitchExpression<>();
-	}
-	
-	public static <T, R> SwitchExpressionFactory<T, R> switch_(T obj)
-	{
-		return new SwitchExpressionFactory<>(obj);
+		return new SwitchExpressionHub<>(obj);
 	}
 	
 	//***************************************************************************
@@ -55,7 +49,7 @@ public class SwitchExpressionFactory<T, R>
 	//***************************************************************************
 	// Private constructor
 	//***************************************************************************
-	private SwitchExpressionFactory(T obj)
+	private SwitchExpressionHub(T obj)
 	{
 		switchObj = obj;
 	}

@@ -1,6 +1,6 @@
 package func.java.controlflow.statements.switches;
 
-import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
 // TODO: document and test
 /**
@@ -39,12 +39,12 @@ import java.util.concurrent.Callable;
  * postfix underscores, and those seemed to almost disappear when looking at them, 
  * so I stuck with that.</p>
  */
-class ParameterlessSwitchStatement extends SwitchStatement<Callable<Boolean>>
+class ParameterlessSwitchStatement extends SwitchStatement<Supplier<Boolean>>
 {
 	//***************************************************************************
 	// Public API methods
 	//***************************************************************************
-	public ParameterlessCase case_(Callable<Boolean> expr)
+	public ParameterlessCase case_(Supplier<Boolean> expr)
 	{
 		return new ParameterlessCase(expr, this);
 	}	
