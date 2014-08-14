@@ -14,21 +14,22 @@
  * <p>
  * This package includes several different kinds of control flow expressions:
  * <ul>
- * <li><a href="#unless">Unless Expression</a> - similar to Ruby's {@code unless} statement, but
- *  returns a value</li>
- * <li><a href="#if">If Expression</a> - essentially an expanded ternary operator that looks like
- *  an if statement.  It provides additional branches through "else if" blocks
- *  like an if statement, but returns a value like the ternary operator</li>
+ * <li><a href="#unless">Unless Expression</a> - similar to Ruby's 
+ *  {@code unless} statement, but returns a value</li>
+ * <li><a href="#if">If Expression</a> - essentially an expanded ternary 
+ *  operator that looks like an if statement.  It provides additional branches 
+ *  through "else if" blocks like an if statement, but returns a value like the 
+ *  ternary operator</li>
  * <li>Switch Expressions:
  * 	<ul>
- * 	<li><a href="#compare">Typical switch</a>, where is compares the value in the case to the one
- * 	 passed into the switch originally, but returns a value instead.  Because
- * 	 it returns a value, it's not possible for the flow to drop down to the
- * 	 next case, though.</li>
- * 	<li><a href="#predicate">Predicate switch</a>, where the value you passed into the switch gets
- * 	 compared or checked however you want to do it.  For example, you could
- * 	 check whether it's less than 3.  And, obviously, the value it returns is
- * 	 dependent on which case is triggered first.</li>
+ * 	<li><a href="#compare">Typical switch</a>, where is compares the value in 
+ * 	 the case to the one passed into the switch originally, but returns a 
+ * 	 value instead of defining a behavior.  Because it returns a value, it's 
+ * 	 not possible for the flow to drop down to the next case, though.</li>
+ * 	<li><a href="#predicate">Predicate switch</a>, where the value you passed 
+ * 	 into the switch gets compared or checked however you want to do it.  For 
+ * 	 example, you could check whether it's less than 3.  And, obviously, the 
+ * 	 value it returns is dependent on which case is triggered first.</li>
  * 	</ul>
  * </li>
  * </ul>
@@ -72,6 +73,6 @@
  * <b>Example Usage</b><br>
  * <code>
  * import static func.java.controlflow.expressions.ExpressionHub.*;<br><br>
- * Optional<String> value = return_(()
+ * Optional<String> value = return_(() -> 
  */
 package func.java.controlflow.expressions;
