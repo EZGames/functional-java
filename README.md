@@ -12,7 +12,8 @@ Items included in the library:
     + an if expression
     + an unless expression, which uses an Optional return value
   + ExpressionHub and StatementHub - a single place to do a static import to begin using any of the provided control flow expressions or statements (func.java.controlflow.expressions.ExpressionHub and func.java.controlflow.statements.StatementHub)
-+ Provider interface - a nice little helpful interface that provides a clean and easy way to create a Supplier, especially for testing, without a lambda expression (func.java.interfaces.Supply)    
++ Provider interface - a nice little helpful interface that provides a clean and easy way to create a Supplier, especially for testing, without a lambda expression (func.java.interfaces.Supply)
++ Lazy Instantiator - a class to make lazily (and thread-safely) instantiating objects easy (func.java.lazyinstantiator.LazilyInstantiate)    
 
 Coming Soon:
 + Documentation for the custom control flow stuff
