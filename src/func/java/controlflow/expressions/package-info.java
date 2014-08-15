@@ -73,6 +73,11 @@
  * <b>Example Usage</b><br>
  * <code>
  * import static func.java.controlflow.expressions.ExpressionHub.*;<br><br>
- * Optional<String> value = return_(() -> 
+ * Optional<String> value = return_(() -> "output").unless(booleanValue);<br>
+ * value.ifPresent(System.out::println);<br>
+ * </code>
+ * If {@code booleanValue} is true, then nothing will happen.  If it's false, 
+ * then "output" will be printed to the console.
+ * 
  */
 package func.java.controlflow.expressions;
