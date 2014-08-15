@@ -17,12 +17,7 @@ public class LazyInstanceQuickTest
 	
 	public static Supplier<String> output()
 	{
-		return new Supplier<String>(){
-			public String get()
-			{
-				System.out.println("Supplier called...");
-				return "ready to go";
-			}
-		};
+		return () -> { System.out.println("Supplier called...");
+							return "ready to go";};
 	}
 }
