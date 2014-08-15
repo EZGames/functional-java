@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 public class UnlessExpression<R>
 {
-	public static <R> UnlessExpression<R> returns_(Supplier<R> giver)
+	public static <R> UnlessExpression<R> returns_(Supplier<? extends R> giver)
 	{
 		return new UnlessExpression<>(giver);
 	}
@@ -29,10 +29,10 @@ public class UnlessExpression<R>
 		}
 	}
 	
-	private UnlessExpression(Supplier<R> giver)
+	private UnlessExpression(Supplier<? extends R> giver)
 	{
 		this.giver = giver;
 	}
 	
-	private final Supplier<R> giver;
+	private final Supplier<? extends R> giver;
 }
