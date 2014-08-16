@@ -1,4 +1,4 @@
-package func.java.tailrecursion;
+package func.java.recursion;
 
 import java.util.stream.Stream;
 
