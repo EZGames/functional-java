@@ -1,28 +1,69 @@
 package func.java.recursion;
+import java.util.*;
+import java.util.function.Function;
 
-public class Memoizer
-{
-   public static <T, R> R callMemoized(final BiFunction<Function<T, R>, T, R> function, final T input)
-   {
-	  Function<T, R> memoized = new Memoized(function);
-	  return memoized.apply(input);
-   }
-   
-   private Memoizer(){} //don't instantiate
-}
-
-static class Memoized<T, R> implements Function<T, R>
+/**
+ * {@code Memoizer} is a caching class used in recursive algorithms that end up
+ * repeating the same calculation over and over again.  It can also be used to
+ * simply cache the results of an algorithm for a given input, but that's
+ * generally a waste.
+ * <p>
+ * To use {@code Memoizer}, simple create an instance of it with {@code new},
+ * then in the recursive function, instead of simply calling the next step of
+ * the recursion, you use the memoizer, calling {@code computeIfNotExists()},
+ * providing the arguments for the next call as well as a reference to the
+ * function being called.</p>
+ * <p>
+ * For example, using the typical factorial recursive method (not a function that
+ * generally needs it, but it's so familiar that you can concentrate on the
+ * important stuff and ignore the algorithm):<br>
+ * <code>
+ * public int factorial(int num)<br>
+ * {<br>
+ * &nbsp; &nbsp; if(num <= 1)<br>
+ * &nbsp; &nbsp; {<br>
+ * &nbsp; &nbsp; &nbsp; &nbsp; return 1;<br>
+ * &nbsp; &nbsp; }<br>
+ * &nbsp; &nbsp; return memoizer.computeIfNotExists(num - 1, this::factorial);<br>
+ * }<br>
+ * </code>
+ * This code assumes that the facorial function is part of an class containing a
+ * {@code Memoizer} object for the function, called {@code memoizer}.
+ * <p>
+ * If a recursive function requires more than one parameter, you can use a tuple
+ * ({@link func.java.tuples} package) as the parameter type, and then use that to
+ * pass the values into the memoizer.</p>  
+ * 
+ * @param <T> - the input type
+ * @param <R> - the return type
+ */
+//TODO update Memoizer documentation
+public class Memoizer<T, R>
 {
    private final Map<T, R> store = new HashMap<>();
-   private final BiFunction<Function<T, R>, T, R> function;
+   private final Function<T, R> computer;
    
-   Memoized(BiFunction<Function<T, R>, T, R> function)
+   public Memoizer(Function<T, R> function)
    {
-	  this.function = function;
+   	computer = function;
    }
-
-   public R apply(final T input)
+   
+   /**
+    * Takes in the parameters for the next recursive call and checks whether 
+    * the result of the parameters has been calculated yet.
+    * If it has, it returns the cached value.  If it hasn't, it runs the 
+    * function to calculate, store, and returns the value.
+    * @param input
+    */
+   public R computeIfNotExists(T input)
    {
-      return store.computeIfAbsent(input, key -> function.apply(this, key);
+	  if(store.containsKey(input))
+		  return store.get(input);
+      
+      else
+      {
+      	store.put(input, computer.apply(input));
+      	return store.get(input);
+      }
    }
 }

@@ -1,7 +1,7 @@
 package func.java.tuples;
 
 import java.util.function.Consumer;
-
+//TODO equals and hashcode
 class QuartetImpl<T1, T2, T3, T4> implements Quartet<T1, T2, T3, T4>
 {
 	public T1 one()
