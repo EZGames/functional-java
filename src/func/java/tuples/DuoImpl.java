@@ -47,6 +47,27 @@ final class DuoImpl<T1, T2> implements Duo<T1, T2>
 		return sb.toString();
 	}
 	
+	public boolean equals(Object o)
+	{
+		if(o == this)
+		{
+			return true;
+		}
+		
+		if(o instanceof DuoImpl)
+		{
+			Duo<?,?>other = (Duo<?,?>)o;
+			return other.one().equals(one) && other.two().equals(two);
+		}
+		
+		return false;
+	}
+	
+	public int hashCode()
+	{
+		return (one.hashCode() + 651654746) ^ (two.hashCode() * 17);
+	}
+	
 	//***************************************************************************
 	// Package-private constructors
 	//***************************************************************************
@@ -102,6 +123,27 @@ final class SwappedTuple2<T1, T2> implements Duo<T1, T2>
 		StringBuilder sb = new StringBuilder();
 		sb.append("(").append(one()).append(", ").append(two()).append(")");
 		return sb.toString();
+	}
+	
+	public boolean equals(Object o)
+	{
+		if(o == this)
+		{
+			return true;
+		}
+		
+		if(o instanceof DuoImpl)
+		{
+			Duo<?,?>other = (Duo<?,?>)o;
+			return other.one().equals(original.one()) && other.two().equals(original.two());
+		}
+		
+		return false;
+	}
+	
+	public int hashCode()
+	{
+		return (one().hashCode() + 651654746) ^ (two().hashCode() * 17);
 	}
 	
 	private final Duo<T2, T1> original;	
