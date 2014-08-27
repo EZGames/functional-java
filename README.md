@@ -21,3 +21,6 @@ Coming Soon:
 + Collection wrapper, providing simple internal looping without Stream
 + "With" keyword - similar to "try with resources" but isn't a try-catch, and you can specify the closing method
 + Async Task - just creates a new thread and runs the given code - takes callbacks as well 
+
+Looking Into:
++ "Until" loop - similar to Ruby's until loop
