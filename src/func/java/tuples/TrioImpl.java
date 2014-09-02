@@ -1,6 +1,7 @@
 package func.java.tuples;
 
 import java.util.function.Consumer;
+
 //TODO equals and hashcode
 final class TrioImpl<T1, T2, T3> implements Trio<T1, T2, T3>
 {

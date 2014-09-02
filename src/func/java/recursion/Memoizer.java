@@ -38,7 +38,7 @@ import java.util.function.Function;
  * @param <T> - the input type
  * @param <R> - the return type
  */
-//TODO update Memoizer documentation
+// DOC update
 public class Memoizer<T, R>
 {
    private final Map<T, R> store = new HashMap<>();

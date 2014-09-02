@@ -2,7 +2,7 @@ package func.java.controlflow.expressions.switches;
 
 import java.util.function.Supplier;
 
-// TODO document and test
+// DOC TEST
 public class DefaultCase<R>
 {
 	//***************************************************************************
