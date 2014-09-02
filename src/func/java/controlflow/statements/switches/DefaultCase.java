@@ -1,6 +1,6 @@
 package func.java.controlflow.statements.switches;
 
-// TODO document and test
+// DOC TEST
 public class DefaultCase
 {
 	//***************************************************************************

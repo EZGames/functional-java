@@ -2,7 +2,7 @@ package func.java.controlflow.statements.switches;
 
 import java.util.function.Supplier;
 
-// TODO document and test
+// DOC TEST
 class ParameterlessCase extends Case<ParameterlessSwitchStatement, Supplier<Boolean>>
 {
 	//***************************************************************************
