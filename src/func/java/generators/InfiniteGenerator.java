@@ -49,16 +49,6 @@ public class InfiniteGenerator<T> implements Generator<T>, BuiltCollection<T>
 		return StreamSupport.stream(spliter, false);
 	}
 	
-	public int size()
-	{
-		return 0;
-	}
-	
-	public T get(final int index)
-	{
-		return null;
-	}
-	
 	static class InfiniteIterator<T> implements Iterator<T>
 	{
 		InfiniteGenerator<T> gener;
