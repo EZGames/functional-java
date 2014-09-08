@@ -1,19 +1,17 @@
 package func.java.generators;
 
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
-import func.java.collections.BuiltCollection;
 
-public class InfiniteGenerator<T> implements Generator<T>, BuiltCollection<T>
+public class InfiniteGenerator<T> implements Generator<T>, Iterable<T>, Iterator<T>
 {
 	public void yield(T obj)
 	{
-		yield(() -> obj);
+		yield(Supplier.from(() -> obj));
+	}
+	
+	public void yield(java.util.function.Supplier<T> obj)
+	{
+		this.next = Supplier.from(obj);
 	}
 	
 	public void yield(Supplier<T> obj)
@@ -21,53 +19,51 @@ public class InfiniteGenerator<T> implements Generator<T>, BuiltCollection<T>
 		this.next = obj;
 	}
 	
-	public void yield(Function<Generator<T>, T> obj)
-	{
-		yield(() -> obj.apply(this));
-	}
-	
 	private Supplier<T> next = null;
+	private boolean continuing = true;
 	
-	public BuiltCollection<T> generate()
+	public Iterable<T> generate()
 	{
 		return this;
 	}
 	
 	public Iterator<T> iterator()
 	{
-		return new InfiniteIterator<>(this);
+		return this;
 	}
 	
-	/**
-	 * NOTE: do not call the {@code parallel} method on the returned stream.
-	 * There are no guarantees that it will work.
-	 * @return
-	 */
-	public Stream<T> stream()
+	public void stop()
 	{
-		Spliterator<T> spliter = Spliterators.spliteratorUnknownSize(iterator(), Spliterator.ORDERED);
-		return StreamSupport.stream(spliter, false);
+		continuing = false;
 	}
 	
-	static class InfiniteIterator<T> implements Iterator<T>
+	@Override
+	public boolean hasNext()
 	{
-		InfiniteGenerator<T> gener;
-		
-		public InfiniteIterator(InfiniteGenerator<T> gener)
-		{
-			this.gener = gener;
-		}
-		
-		@Override
-		public boolean hasNext()
-		{
-			return true;
-		}
+		return continuing;
+	}
 
-		@Override
-		public T next()
+	@Override
+	public T next()
+	{
+		T retVal = next.get();
+		next = next.next(retVal);
+		return retVal;
+	}
+	
+	@FunctionalInterface
+	public interface Supplier<T>
+	{
+		T get();
+		
+		default Supplier<T> next(T previous)
 		{
-			return gener.next.get();
-		}		
+			return this;
+		}
+		
+		public static <T> Supplier<T> from(java.util.function.Supplier<T> supplier)
+		{
+			return () -> supplier.get();
+		}
 	}
 }

@@ -1,7 +1,6 @@
 package func.java.generators;
 
 import java.util.function.Supplier;
-import func.java.collections.BuiltCollection;
 
 public interface Generator<T>
 {
@@ -13,5 +12,5 @@ public interface Generator<T>
 	
 	void yield(Supplier<T> valueToYield);
 	
-	BuiltCollection<T> generate();
+	Iterable<T> generate();
 }
