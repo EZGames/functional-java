@@ -2,7 +2,7 @@ package func.java.generators;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
-import func.java.collections.BuiltCollection;
+import func.java.collections.SupplyingIterable;
 
 public class EagerGenerator<T> implements Generator<T>
 {
@@ -21,9 +21,9 @@ public class EagerGenerator<T> implements Generator<T>
 		yieldedValues.add(valueToYield);
 	}
 	
-	public BuiltCollection<T> generate()
+	public Iterable<T> generate()
 	{
-		return BuiltCollection.fromSupplying(yieldedValues);
+		return SupplyingIterable.from(yieldedValues);
 	}
 	
 	private ArrayList<Supplier<T>> yieldedValues;
