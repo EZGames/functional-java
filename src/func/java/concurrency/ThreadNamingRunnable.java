@@ -11,9 +11,9 @@ package func.java.concurrency;
  * <pre><code>executorService.submit(namedThreadFrom("my thread name", () -> System.out.println("in thread"));)
  * </code></pre>
  */
-public final class ThreadNamingRunnable implements Runnable
+final class ThreadNamingRunnable extends ExtendableRunnable
 {
-	public static ThreadNamingRunnable namedThreadFrom(String threadName, Runnable toRun)
+	public static ThreadNamingRunnable namedThreadFrom(String threadName, ExtendableRunnable toRun)
 	{
 		return new ThreadNamingRunnable(threadName, toRun);
 	}
@@ -25,7 +25,7 @@ public final class ThreadNamingRunnable implements Runnable
 		currThread.setName(threadName);
 		try
 		{
-			decoratedRunnable.run();
+			extendedRunnable.run();
 		}
 		finally
 		{
@@ -35,10 +35,9 @@ public final class ThreadNamingRunnable implements Runnable
 	
 	private ThreadNamingRunnable(String threadName, Runnable decoratedRunnable)
 	{
+		super(decoratedRunnable);
 		this.threadName = threadName;
-		this.decoratedRunnable = decoratedRunnable;
 	}
 	
 	private final String threadName;
-	private final Runnable decoratedRunnable;
 }

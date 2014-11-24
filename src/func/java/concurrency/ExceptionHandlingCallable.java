@@ -2,8 +2,9 @@ package func.java.concurrency;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.concurrent.Callable;
-
-public final class ExceptionHandlingCallable<T> implements Callable<T>
+// DOC
+// TODO add to readme (same applies to Runnable version)
+public final class ExceptionHandlingCallable<T> extends ExtendableCallable<T>
 {
 	public static <T> ExceptionHandlingCallable<T> from(Callable<T> toCall, UncaughtExceptionHandler exHandler)
 	{
@@ -14,7 +15,7 @@ public final class ExceptionHandlingCallable<T> implements Callable<T>
 	{
 		try
 		{
-			return decoratedCallable.call();
+			return extendedCallable.call();
 		}
 		catch(Throwable e)
 		{
@@ -25,10 +26,9 @@ public final class ExceptionHandlingCallable<T> implements Callable<T>
 	
 	private ExceptionHandlingCallable(Callable<T> decoratedCallable, UncaughtExceptionHandler exHandler)
 	{
-		this.decoratedCallable = decoratedCallable;
+		super(decoratedCallable);
 		this.exHandler = exHandler;
 	}
 	
-	private final Callable<T> decoratedCallable;
 	private final UncaughtExceptionHandler exHandler;
 }
