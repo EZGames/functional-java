@@ -13,9 +13,9 @@ import java.util.concurrent.Callable;
  * <pre><code>executorService.submit(namedThreadFrom("my thread name", () -> "returned String");)
  * </code></pre>
  */
-public final class ThreadNamingCallable<T> implements Callable<T>
+final class ThreadNamingCallable<T> extends ExtendableCallable<T>
 {
-	public static <T> ThreadNamingCallable<T> namedThreadFrom(String threadName, Callable<T> toCall)
+	public static <T> ThreadNamingCallable<T> namedThreadFrom(String threadName, ExtendableCallable<T> toCall)
 	{
 		return new ThreadNamingCallable<>(threadName, toCall);
 	}
@@ -28,7 +28,7 @@ public final class ThreadNamingCallable<T> implements Callable<T>
 		
 		try
 		{
-			return decoratedCallable.call();
+			return extendedCallable.call();
 		}
 		finally
 		{
@@ -38,10 +38,9 @@ public final class ThreadNamingCallable<T> implements Callable<T>
 	
 	private ThreadNamingCallable(String threadName, Callable<T> decoratedCallable)
 	{
+		super(decoratedCallable);
 		this.threadName = threadName;
-		this.decoratedCallable = decoratedCallable;
 	}
 	
 	private final String threadName;
-	private final Callable<T> decoratedCallable;
 }

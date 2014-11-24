@@ -1,10 +1,10 @@
 package func.java.concurrency;
 
 import java.lang.Thread.UncaughtExceptionHandler;
-
-public final class ExceptionHandlingRunnable implements Runnable
+//TODO update readme to reflect these changes
+final class ExceptionHandlingRunnable extends ExtendableRunnable
 {
-	public static ExceptionHandlingRunnable from(Runnable toRun, UncaughtExceptionHandler exHandler)
+	public static ExceptionHandlingRunnable from(ExtendableRunnable toRun, UncaughtExceptionHandler exHandler)
 	{
 		return new ExceptionHandlingRunnable(toRun, exHandler);
 	}
@@ -13,7 +13,7 @@ public final class ExceptionHandlingRunnable implements Runnable
 	{
 		try
 		{
-			decoratedRunnable.run();
+			extendedRunnable.run();
 		}
 		catch(Throwable e)
 		{
@@ -23,10 +23,9 @@ public final class ExceptionHandlingRunnable implements Runnable
 	
 	private ExceptionHandlingRunnable(Runnable decoratedRunnable, UncaughtExceptionHandler exHandler)
 	{
-		this.decoratedRunnable = decoratedRunnable;
+		super(decoratedRunnable);
 		this.exHandler = exHandler;
 	}
 	
-	private final Runnable decoratedRunnable;
 	private final UncaughtExceptionHandler exHandler;
 }
