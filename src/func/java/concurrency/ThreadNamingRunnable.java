@@ -11,7 +11,7 @@ package func.java.concurrency;
  * <pre><code>executorService.submit(namedThreadFrom("my thread name", () -> System.out.println("in thread"));)
  * </code></pre>
  */
-public class ThreadNamingRunnable implements Runnable
+public final class ThreadNamingRunnable implements Runnable
 {
 	public static ThreadNamingRunnable namedThreadFrom(String threadName, Runnable toRun)
 	{

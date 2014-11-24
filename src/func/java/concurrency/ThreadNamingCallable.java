@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
  * <pre><code>executorService.submit(namedThreadFrom("my thread name", () -> "returned String");)
  * </code></pre>
  */
-public class ThreadNamingCallable<T> implements Callable<T>
+public final class ThreadNamingCallable<T> implements Callable<T>
 {
 	public static <T> ThreadNamingCallable<T> namedThreadFrom(String threadName, Callable<T> toCall)
 	{
