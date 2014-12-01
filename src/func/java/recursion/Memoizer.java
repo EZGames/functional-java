@@ -17,18 +17,17 @@ import java.util.function.Function;
  * <p>
  * For example, using the typical factorial recursive method (not a function that
  * generally needs it, but it's so familiar that you can concentrate on the
- * important stuff and ignore the algorithm):<br>
- * <code>
- * public int factorial(int num)<br>
- * {<br>
- * &nbsp; &nbsp; if(num <= 1)<br>
- * &nbsp; &nbsp; {<br>
- * &nbsp; &nbsp; &nbsp; &nbsp; return 1;<br>
- * &nbsp; &nbsp; }<br>
- * &nbsp; &nbsp; return memoizer.computeIfNotExists(num - 1, this::factorial);<br>
- * }<br>
- * </code>
- * This code assumes that the facorial function is part of an class containing a
+ * important stuff and ignore the algorithm):
+ * <pre><code>public int factorial(int num)
+ * {
+ *    if(num <= 1)
+ *    {
+ *       return 1;
+ *    }
+ *    return memoizer.computeIfNotExists(num - 1, this::factorial);
+ * }
+ * </code></pre>
+ * This code assumes that the factorial function is part of an class containing a
  * {@code Memoizer} object for the function, called {@code memoizer}.
  * <p>
  * If a recursive function requires more than one parameter, you can use a tuple
@@ -38,7 +37,7 @@ import java.util.function.Function;
  * @param <T> - the input type
  * @param <R> - the return type
  */
-// DOC update
+// DOC update TEST
 public class Memoizer<T, R>
 {
    private final Map<T, R> store = new HashMap<>();
