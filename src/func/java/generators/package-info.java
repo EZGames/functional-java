@@ -7,32 +7,29 @@
  * like an iterator, allowing you to go over those values, one at a time.</p>
  * <p>
  * An example of a generator function (if Java had built-in ones) is:</p>
- * <code>
- * public Generator&lt;Integer&gt; range(int from, int to) {<br>
- * &nbsp; &nbsp; for(int i = from; i <= to; i++)<br>
- * &nbsp; &nbsp; &nbsp; &nbsp; yield i;<br>
- * }<br>
- * </code><br>
+ * <pre><code>public Generator&lt;Integer&gt; range(int from, int to) {
+ *    for(int i = from; i <= to; i++)
+ *       yield i;
+ * }
+ * </code></pre>
  * <p>
  * The {@code yield} keyword (and returning a {@code Generator}) is what makes
  * this a generator function.  {@code yield} works just like {@code return},
  * except that it just represents a step for the generator to return. You can
  * have multiple yield statements in a function, like this:</p>
- * <code>
- * public Generator&lt;Integer&gt; someNums() {<br>
- * &nbsp; &nbsp; yield 5;<br>
- * &nbsp; &nbsp; yield 37;<br>
- * &nbsp; &nbsp; yield -4039<br>
- * }<br>
- * </code><br>
+ * <pre><code>public Generator&lt;Integer&gt; someNums() {
+ *    yield 5;
+ *    yield 37;
+ *    yield -4039
+ * }
+ * </code></pre>
  * <p> 
  * One of the cooler things about generators is that you could use the above 
  * {@code range()} function in a for each loop to go through a set of  numbers
  * like so:</p>
- * <code>
- * for(Integer i : range(0, 10))<br>
- * // do what you want with the numbers<br>
- * </code><br>
+ * <pre><code>for(Integer i : range(0, 10))
+ * // do what you want with the numbers
+ * </code></pre>
  * <p>
  * This is because generators are iterable. The generators in this package are
  * also streamable (they have the {@code stream()} method that returns a stream)
@@ -47,14 +44,13 @@
  * collection, which is then used for producing the iterator and stream.</p>* 
  * <p>
  * Let's look at you how to use the {@code EagerGenerator}.</p>
- * <code>
- * public BuiltCollection&lt;Integer&gt; range(int from, int to) {<br>
- * &nbsp; &nbsp; Generator&lt;Integer&gt; generator = new EagerGenerator<>();<br>
- * &nbsp; &nbsp; for(int i = from; i <= to; i++)<br>
- * &nbsp; &nbsp; &nbsp; &nbsp; generator.yield(i);<br>
- * &nbsp; &nbsp; return generator.generate();<br>
- * }<br>
- * </code><br>
+ * <pre><code>public BuiltCollection&lt;Integer&gt; range(int from, int to) {
+ *    Generator&lt;Integer&gt; generator = new EagerGenerator<>();
+ *    for(int i = from; i <= to; i++)
+ *       generator.yield(i);
+ *    return generator.generate();
+ * }
+ * </code></pre>
  * <p>
  * That's how a {@code Generator} is created. As you can see, it's pretty close
  * to earlier code, but now we have to work with the generator object

@@ -12,26 +12,25 @@ import java.util.function.Supplier;
  * instantiating the object. After that, it stops blocking and removes unnecessary
  * checks for whether the object is instantiated.</p>
  * <p>
- * Here's an example of it being used for implementing a singleton:</p>
- * <code>
- * public class Singleton<br>
- * {<br>
- * &nbsp; &nbsp; private static Supplier&lt;Singleton&gt; instance = LazilyInstantiate.using(() -> new Singleton());<br>
- * &nbsp; &nbsp; //other fields<br>
- * <br>
- * &nbsp; &nbsp; public static getInstance()<br>
- * &nbsp; &nbsp; {<br>
- * &nbsp; &nbsp; &nbsp; &nbsp; instance.get();<br>
- * &nbsp; &nbsp; }<br>
- * <br>
- * &nbsp; &nbsp; //other methods<br>
- * <br>
- * &nbsp; &nbsp; private Singleton()<br>
- * &nbsp; &nbsp; {<br>
- * &nbsp; &nbsp; &nbsp; &nbsp; //contructor stuff<br>
- * &nbsp; &nbsp; }<br>
- * }<br>
- * </code>
+ * Here's an example of it being used for implementing a singleton:
+ * <pre><code>public class Singleton
+ * {
+ *    private static Supplier&lt;Singleton&gt; instance = LazilyInstantiate.using(() -> new Singleton());
+ *    //other fields
+ * 
+ *    public static getInstance()
+ *    {
+ *       instance.get();
+ *    }
+ * 
+ *    //other methods
+ * 
+ *    private Singleton()
+ *    {
+ *       //constructor stuff
+ *    }
+ * }
+ * </code></pre>
  * </p>
  * So, here are the changes you'll need to apply in your code:
  * <ul>

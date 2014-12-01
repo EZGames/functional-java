@@ -20,36 +20,34 @@ import java.util.stream.Stream;
  * recursiveCall(2, 5)}<br>
  * 4. call {@code invoke()} on what is returned by the recursive method</p>
  * <p>
- * Here's a full example:<br>
- * <code>
- * int factorial(final int number)<br>
- * {<br>
- * &nbsp;&nbsp;return factorial(number, 1);<br>
- * }<br><br>
- * 
- * int factorial(final int number, final int accumulation)<br>
- * {<br>
- * &nbsp;&nbsp;if(number == 1)<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return accumulation;<br>
- * &nbsp;&nbsp;else<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return factorial(number - 1, number * accumulation);<br>
+ * Here's a full example:
+ * <pre><code> int factorial(final int number)
+ * {
+ * &nbsp;&nbsp;return factorial(number, 1);
  * }
- * </code><br><br>
- * becomes<br><br>
- * <code>
- * int factorial(final int number)<br>
- * {<br>
- * &nbsp;&nbsp;return factorial(number, 1).invoke();<br>
- * }<br><br>
  * 
- * TailCall<Integer> factorial(final int number, final int accumulation)<br>
- * {<br>
- * &nbsp;&nbsp;if(number == 1)<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return done(accumulation);<br>
- * &nbsp;&nbsp;else<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return () -> factorial(number - 1, number * accumulation);<br>
+ * int factorial(final int number, final int accumulation)
+ * {
+ * &nbsp;&nbsp;if(number == 1)
+ * &nbsp;&nbsp;&nbsp;&nbsp;return accumulation;
+ * &nbsp;&nbsp;else
+ * &nbsp;&nbsp;&nbsp;&nbsp;return factorial(number - 1, number * accumulation);
  * }
- * </code>
+ * </code></pre>
+ * becomes
+ * <pre><code>int factorial(final int number)
+ * {
+ * &nbsp;&nbsp;return factorial(number, 1).invoke();
+ * }
+ * 
+ * TailCall&lt;Integer&gt; factorial(final int number, final int accumulation)
+ * {
+ * &nbsp;&nbsp;if(number == 1)
+ * &nbsp;&nbsp;&nbsp;&nbsp;return done(accumulation);
+ * &nbsp;&nbsp;else
+ * &nbsp;&nbsp;&nbsp;&nbsp;return () -> factorial(number - 1, number * accumulation);
+ * }
+ * </code></pre>
  * @param <T>
  */
 @FunctionalInterface

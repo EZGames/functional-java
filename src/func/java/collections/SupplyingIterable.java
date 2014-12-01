@@ -2,7 +2,7 @@ package func.java.collections;
 
 import java.util.Iterator;
 import java.util.function.Supplier;
-
+//DOC TEST
 public class SupplyingIterable<E> implements Iterable<E>
 {
 	public static <E> SupplyingIterable<E> from(Iterable<Supplier<E>> supplierList)

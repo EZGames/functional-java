@@ -1,7 +1,7 @@
 package func.java.controlflow.expressions.switches;
 
 import java.util.ArrayList;
-
+//DOC
 public abstract class SwitchExpression<F, R>
 {
 	//***************************************************************************

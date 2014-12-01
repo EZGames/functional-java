@@ -2,7 +2,7 @@ package func.java.controlflow.expressions.switches;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
+//DOC
 public class SwitchExpressionHub<T, R>
 {
 	//***************************************************************************

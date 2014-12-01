@@ -2,7 +2,7 @@ package func.java.controlflow.expressions.ifexpr;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
-
+//DOC
 public class IfExpression<R>
 {
 	//***************************************************************************

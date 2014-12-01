@@ -2,7 +2,7 @@ package func.java.collections;
 
 import java.util.Iterator;
 import java.util.function.Supplier;
-
+//DOC TEST
 /**
  * {@code SupplyingIterator} is a specialized iterator for dealing with
  * collections of {@link Supplier}s. To create it, you supply it with an
