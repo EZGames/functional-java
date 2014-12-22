@@ -13,7 +13,7 @@ import java.util.function.Supplier;
  * checks for whether the object is instantiated.</p>
  * <p>
  * Here's an example of it being used for implementing a singleton:
- * <pre><code>public class Singleton
+ * <pre><code> public class Singleton
  * {
  *    private static Supplier&lt;Singleton&gt; instance = LazilyInstantiate.using(() -> new Singleton());
  *    //other fields
