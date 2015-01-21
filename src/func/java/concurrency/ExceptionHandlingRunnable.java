@@ -4,7 +4,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 //TODO update readme to reflect these changes
 final class ExceptionHandlingRunnable extends ExtendableRunnable
 {
-	public static ExceptionHandlingRunnable from(ExtendableRunnable toRun, UncaughtExceptionHandler exHandler)
+	public static ExceptionHandlingRunnable from(Runnable toRun, UncaughtExceptionHandler exHandler)
 	{
 		return new ExceptionHandlingRunnable(toRun, exHandler);
 	}
@@ -13,7 +13,7 @@ final class ExceptionHandlingRunnable extends ExtendableRunnable
 	{
 		try
 		{
-			extendedRunnable.run();
+			super.run();
 		}
 		catch(Throwable e)
 		{
