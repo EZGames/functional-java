@@ -15,7 +15,7 @@ import java.util.concurrent.Callable;
  */
 final class ThreadNamingCallable<T> extends ExtendableCallable<T>
 {
-	public static <T> ThreadNamingCallable<T> namedThreadFrom(String threadName, ExtendableCallable<T> toCall)
+	public static <T> ThreadNamingCallable<T> namedThreadFrom(String threadName, Callable<T> toCall)
 	{
 		return new ThreadNamingCallable<>(threadName, toCall);
 	}
@@ -28,7 +28,7 @@ final class ThreadNamingCallable<T> extends ExtendableCallable<T>
 		
 		try
 		{
-			return extendedCallable.call();
+			return super.call();
 		}
 		finally
 		{

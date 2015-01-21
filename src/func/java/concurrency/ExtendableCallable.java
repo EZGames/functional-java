@@ -27,5 +27,10 @@ public class ExtendableCallable<V> implements Callable<V>
 		return ExceptionHandlingCallable.from(this, exHandler);
 	}
 	
-	protected final Callable<V> extendedCallable;
+	public ExtendableCallable<V> asDaemon() 
+	{
+		return AsDaemonCallable.asDaemon(this);
+	}
+	
+	private final Callable<V> extendedCallable;
 }

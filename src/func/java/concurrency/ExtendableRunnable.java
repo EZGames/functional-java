@@ -25,5 +25,5 @@ public class ExtendableRunnable implements Runnable
 		return ExceptionHandlingRunnable.from(this, exHandler);
 	}
 	
-	protected final Runnable extendedRunnable;
+	private final Runnable extendedRunnable;
 }

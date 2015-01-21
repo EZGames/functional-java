@@ -13,7 +13,7 @@ package func.java.concurrency;
  */
 final class ThreadNamingRunnable extends ExtendableRunnable
 {
-	public static ThreadNamingRunnable namedThreadFrom(String threadName, ExtendableRunnable toRun)
+	public static ThreadNamingRunnable namedThreadFrom(String threadName, Runnable toRun)
 	{
 		return new ThreadNamingRunnable(threadName, toRun);
 	}
@@ -25,7 +25,7 @@ final class ThreadNamingRunnable extends ExtendableRunnable
 		currThread.setName(threadName);
 		try
 		{
-			extendedRunnable.run();
+			super.run();
 		}
 		finally
 		{

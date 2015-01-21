@@ -15,7 +15,7 @@ public final class ExceptionHandlingCallable<T> extends ExtendableCallable<T>
 	{
 		try
 		{
-			return extendedCallable.call();
+			return super.call();
 		}
 		catch(Throwable e)
 		{
