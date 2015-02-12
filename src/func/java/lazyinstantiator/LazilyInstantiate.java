@@ -8,6 +8,10 @@ import java.util.function.Supplier;
  * public methods: one static factory for creating the object, and another for
  * initiating the instantiation and retrieval of the object.</p>
  * <p>
+ * An additional use of LazilyInstantiate is for caching a hash code calculation.
+ * While this isn't all that helpful for mutable classes, caching hash codes is
+ * a great practice with immutable types.</p> 
+ * <p>
  * Also, another benefit is that it's thread safe, but only blocks when initially
  * instantiating the object. After that, it stops blocking and removes unnecessary
  * checks for whether the object is instantiated.</p>
